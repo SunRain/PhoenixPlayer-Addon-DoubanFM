@@ -4,7 +4,9 @@ load(ubuntu-click)
 
 OTHER_FILES += \
     manifest.json \
-    README.md
+    README.md \
+    icon.png \
+    main.qml
 
 
 addon.path = $${UBUNTU_CLICK_PLUGIN_PATH}/addon/doubanfm
