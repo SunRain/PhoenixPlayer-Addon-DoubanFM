@@ -16,12 +16,17 @@ Item {
         property real playTickPercent: 0
         property int playTickActualSec: 0
         property int playBackendState: Common.PlayBackendStopped
+        property int length: 0
+        property url picSource
+        property string trackName
+        property string artist
+        property string forwardTrackName
+        property string forwardTrackInfo
     }
     SongObject {
         id: song
         onSongChanged: {
             musicPlayer.playFromNetwork(song.source);
-
             ///playerController为系统提供可调用函数，发送trackChanged以告知系统歌曲已经改变
             playerController.trackChanged();
         }
@@ -100,8 +105,22 @@ Item {
         }
 
         //TODO: 此方式不提供跳转到上一首曲目功能
+        internal.length = songModel.model.get(0).length;
+        internal.picSource = songModel.model.get(0).picture.replace(/mpic/, "lpic");
+        internal.trackName = songModel.model.get(0).title;
+        internal.artist = songModel.model.get(0).artist;
+
+        if (songModel.count > 1) {
+            internal.forwardTrackName = songModel.model.get(1).title;
+            var a = songModel.model.get(1).artist;
+            var t = songModel.model.get(1).length;
+            internal.forwardTrackInfo = a + "/" + util.formateSongDuration(t);
+        }
         song.songInfo = songModel.model.get(0);
         songModel.model.remove(0);
+
+//        ///playerController为系统提供可调用函数，发送trackChanged以告知系统歌曲已经改变
+//        playerController.trackChanged();
 
         return true;
     }
@@ -157,18 +176,18 @@ Item {
         return internal.playBackendState;
     }
     function getTrackLength() {
-        return song.length;
+        return internal.length;
     }
     function getCoverUri(defaultUri) {
-        if (song.picSource == undefined || song.picSource == "")
+        if (internal.picSource == undefined || internal.picSource == "")
             return defaultUri;
-        return song.picSource;
+        return internal.picSource;
     }
     function trackTitle() {
-        return song.name;
+        return internal.trackName;
     }
     function trackArtist() {
-        return song.artist;
+        return internal.artist;
     }
     function playTickPercent() {
         return internal.playTickPercent;
@@ -189,16 +208,11 @@ Item {
     }
 
     function forwardTrackName() {
-        var t = songModel.model.get(1).name;
-        console.log("====== forwardTrackName "+ t);
-        return t;
+        return internal.forwardTrackName;
     }
     function forwardTrackInfo() {
-        var a = songModel.model.get(1).artist;
-        var t = songModel.model.get(1).length;
-        return a + "/" + util.formateSongDuration(t);
+        return internal.forwardTrackInfo;
     }
-
     function backwardTrackName() {
     }
     function backwardTrackInfo() {
