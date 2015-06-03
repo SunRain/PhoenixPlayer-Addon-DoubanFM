@@ -6,7 +6,12 @@ OTHER_FILES += \
     manifest.json \
     README.md \
     icon.png \
-    main.qml
+    main.qml \
+    OverrideController.qml \
+    Utils.js \
+    JSONListModel.qml \
+    jsonpath.js \
+    SongObject.qml
 
 
 addon.path = $${UBUNTU_CLICK_PLUGIN_PATH}/addon/doubanfm
