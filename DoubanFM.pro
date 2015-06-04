@@ -11,7 +11,8 @@ OTHER_FILES += \
     Utils.js \
     JSONListModel.qml \
     jsonpath.js \
-    SongObject.qml
+    SongObject.qml \
+    translations/lng-zh_CN.qm
 
 
 addon.path = $${UBUNTU_CLICK_PLUGIN_PATH}/addon/doubanfm

@@ -11,7 +11,7 @@ Item {
     /////// 设置下面属性以注册插件基本功能
     property bool bindController: true
     property Item bindItem: overrideController
-    property string pageTitle: "Douban.FM"
+    property string pageTitle: qsTr("Douban.FM")
     property bool musicPlayerAutoSkipForwad: false
     ////// 设置以上属性以注册插件基本功能
 
@@ -32,8 +32,8 @@ Item {
     ListModel {
         id: channelModel
 
-//        ListElement { cid: 0; name: "我的私人"; type: "私人电台" }
-//        ListElement { cid: -3; name: "我的红星"; type: "私人电台" }
+        ListElement { cid: 0; name: "我的私人"; type: "私人电台" }
+        ListElement { cid: -3; name: "我的红星"; type: "私人电台" }
 
         ListElement { cid: 1; name: "华语"; type: "公共电台" }
         ListElement { cid: 6; name: "粤语"; type: "公共电台" }
@@ -60,7 +60,7 @@ Item {
         model: channelModel
         clip: true
         delegate: ListItem.Standard {
-            text:model.name + " MHz"
+            text: qsTr(model.name) + " MHz"
             selected: ListView.isCurrentItem
             onClicked: {
                 ListView.view.currentIndex = index
@@ -75,8 +75,8 @@ Item {
         }
 
         Component.onCompleted: {
-            console.log(">>>>>>>>>>>>> douban.fm jump to 1st channel");
-            currentIndex = 0;
+            console.log(">>>>>>>>>>>>> douban.fm jump to 2nd channel");
+            currentIndex = 2;
         }
 
         Scrollbar { flickableItem: parent }
