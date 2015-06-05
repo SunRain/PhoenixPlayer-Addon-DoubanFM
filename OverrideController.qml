@@ -25,6 +25,7 @@ Item {
     }
 
     property bool isLoading: false
+    property bool like: false
 
     SongObject {
         id: song
@@ -111,6 +112,7 @@ Item {
             return false;
         }
 
+        overrideController.like = songModel.model.get(0).like;
         //TODO: 此方式不提供跳转到上一首曲目功能
         internal.length = songModel.model.get(0).length;
         internal.picSource = songModel.model.get(0).picture.replace(/mpic/, "lpic");
@@ -135,6 +137,20 @@ Item {
     function newSongs() {
         internal.rapidLoad = true;
         request("p")
+    }
+
+    function rate(like) {
+        internal.rapidLoad = false;
+        if (like) {
+            request("r");
+        } else {
+            request("u");
+        }
+    }
+
+    function ban() {
+        internal.rapidLoad = true;
+        request("b");
     }
 
     //// 以下为可以直接使用的系统组件

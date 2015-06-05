@@ -1,6 +1,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0
 
 import com.sunrain.phoenixplayer.qmlplugin 1.0
 
@@ -13,6 +14,35 @@ Item {
     property Item bindItem: overrideController
     property string pageTitle: qsTr("Douban.FM")
     property bool musicPlayerAutoSkipForwad: false
+    property list<Action> actions: [
+        Action {
+            text: overrideController.like ? qsTr("Like") : qsTr("UnLike")
+            name: overrideController.like ? qsTr("Like") : qsTr("UnLike")
+            iconSource: overrideController.like
+                        ? Qt.resolvedUrl("like.png")
+                        : Qt.resolvedUrl("unlike.png")
+            onTriggered: {
+                overrideController.like = !overrideController.like;
+                overrideController.rate(overrideController.like);
+            }
+        },
+        Action {
+            text: qsTr("Ban")
+            name: qsTr("Ban")
+            iconName: "delete"
+            onTriggered: {
+                overrideController.ban();
+            }
+        },
+        Action {
+            text: qsTr("Settings")
+            name: qsTr("Settings")
+            iconName: "settings"
+            onTriggered: {
+                PopupUtils.open(Qt.resolvedUrl("Settings.qml"), doubanMainItem)
+            }
+        }
+    ]
     ////// 设置以上属性以注册插件基本功能
 
     ///OverrideController用于提供被程序调用的qml相关方式
