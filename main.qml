@@ -32,27 +32,27 @@ Item {
     ListModel {
         id: channelModel
 
-        ListElement { cid: 0; name: "我的私人"; type: "私人电台" }
-        ListElement { cid: -3; name: "我的红星"; type: "私人电台" }
+        ListElement { cid: 0; name: QT_TR_NOOP("我的私人"); type: QT_TR_NOOP("私人电台") }
+        ListElement { cid: -3; name: QT_TR_NOOP("我的红星"); type: QT_TR_NOOP("私人电台") }
 
-        ListElement { cid: 1; name: "华语"; type: "公共电台" }
-        ListElement { cid: 6; name: "粤语"; type: "公共电台" }
-        ListElement { cid: 2; name: "欧美"; type: "公共电台" }
-        ListElement { cid: 22; name: "法语"; type: "公共电台" }
-        ListElement { cid: 17; name: "日语"; type: "公共电台" }
-        ListElement { cid: 18; name: "韩语"; type: "公共电台" }
-        ListElement { cid: 3; name: "70"; type: "公共电台" }
-        ListElement { cid: 4; name: "80"; type: "公共电台" }
-        ListElement { cid: 5; name: "90"; type: "公共电台" }
-        ListElement { cid: 7; name: "摇滚"; type: "公共电台" }
-        ListElement { cid: 8; name: "民谣"; type: "公共电台" }
-        ListElement { cid: 9; name: "轻音乐"; type: "公共电台" }
-        ListElement { cid: 10; name: "电影原声"; type: "公共电台" }
-        ListElement { cid: 13; name: "爵士"; type: "公共电台" }
-        ListElement { cid: 14; name: "电子"; type: "公共电台" }
-        ListElement { cid: 15; name: "说唱"; type: "公共电台" }
-        ListElement { cid: 16; name: "R&B"; type: "公共电台" }
-        ListElement { cid: 20; name: "女生"; type: "公共电台" }
+        ListElement { cid: 1; name: QT_TR_NOOP("华语"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 6; name: QT_TR_NOOP("粤语"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 2; name: QT_TR_NOOP("欧美"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 22; name: QT_TR_NOOP("法语"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 17; name: QT_TR_NOOP("日语"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 18; name: QT_TR_NOOP("韩语"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 3; name: QT_TR_NOOP("70"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 4; name: QT_TR_NOOP("80"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 5; name: QT_TR_NOOP("90"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 7; name: QT_TR_NOOP("摇滚"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 8; name: QT_TR_NOOP("民谣"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 9; name: QT_TR_NOOP("轻音乐"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 10; name: QT_TR_NOOP("电影原声"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 13; name: QT_TR_NOOP("爵士"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 14; name: QT_TR_NOOP("电子"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 15; name: QT_TR_NOOP("说唱"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 16; name: QT_TR_NOOP("R&B"); type: QT_TR_NOOP("公共电台") }
+        ListElement { cid: 20; name: QT_TR_NOOP("女生"); type: QT_TR_NOOP("公共电台") }
     }
     ListView {
         id: channelList
@@ -70,12 +70,11 @@ Item {
         section.property: "type"
         section.criteria: ViewSection.FullString
         section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
-        section.delegate: ListItem.Caption {
-            text: section
+        section.delegate: Captions {
+            title.text: qsTr(section)
         }
 
         Component.onCompleted: {
-            console.log(">>>>>>>>>>>>> douban.fm jump to 2nd channel");
             currentIndex = 2;
         }
 
