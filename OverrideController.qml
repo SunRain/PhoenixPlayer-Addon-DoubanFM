@@ -23,6 +23,9 @@ Item {
         property string forwardTrackName
         property string forwardTrackInfo
     }
+
+    property bool isLoading: false
+
     SongObject {
         id: song
         onSongChanged: {
@@ -43,9 +46,11 @@ Item {
                     songModel.json = json;
                 } else {
                     Utils.log(o.err);
+                    overrideController.isLoading = false;
                 }
             } else {
                 console.log(json);
+                overrideController.isLoading = false;
             }
         }
     }
@@ -57,6 +62,7 @@ Item {
 
         onJsonChanged: {
             Utils.log("=== onJsonChanged " + songModel.json)
+            overrideController.isLoading = false;
             if (count > 0) {
                 overrideController.nextSong();
             } else {
@@ -65,6 +71,7 @@ Item {
         }
     }
     function request(type) {
+        overrideController.isLoading = true
         var url = "http://douban.fm/j/mine/playlist?" + parameter(type);
         Utils.log(url)
         if (type !== "e") {

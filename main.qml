@@ -54,7 +54,7 @@ Item {
         ListElement { cid: 16; name: QT_TR_NOOP("R&B"); type: QT_TR_NOOP("公共电台") }
         ListElement { cid: 20; name: QT_TR_NOOP("女生"); type: QT_TR_NOOP("公共电台") }
     }
-    ListView {
+    UbuntuListView {
         id: channelList
         anchors.fill: parent
         model: channelModel
@@ -64,6 +64,24 @@ Item {
             selected: ListView.isCurrentItem
             onClicked: {
                 ListView.view.currentIndex = index
+            }
+        }
+
+        PullToRefresh {
+            id: ptRefresh
+            refreshing: overrideController.isLoading
+            content:  Item {
+                height: childrenRect.height * 2
+                width: channelList.width
+                Label {
+                    anchors.centerIn: parent
+                    color: UbuntuColors.darkGrey
+                    horizontalAlignment: Text.AlignHCenter
+                    text: ptRefresh.releaseToRefresh ? qsTr("Release to refresh") : qsTr("Pull to refresh")
+                }
+            }
+            onRefresh: {
+                overrideController.newSongs();
             }
         }
 

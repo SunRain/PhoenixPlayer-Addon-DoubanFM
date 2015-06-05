@@ -136,5 +136,15 @@
         <source>女生</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="main.qml" line="76"/>
+        <source>Release to refresh</source>
+        <translation>开始收听</translation>
+    </message>
+    <message>
+        <location filename="main.qml" line="76"/>
+        <source>Pull to refresh</source>
+        <translation>换一组歌曲</translation>
+    </message>
 </context>
 </TS>
