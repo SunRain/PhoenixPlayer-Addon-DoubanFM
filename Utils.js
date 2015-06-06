@@ -1,6 +1,6 @@
 .pragma library
 
-var debug = true
+var debug = false
 
 function log(text) {
     if (debug)
@@ -36,8 +36,8 @@ function login(username, password, captcha, captchaId, model) {
     doc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     doc.onreadystatechange = function() {
         if (doc.readyState === XMLHttpRequest.DONE) {
-            //Utils.log(doc.status);
-            //Utils.log(doc.responseText);
+            log(doc.status);
+            log(doc.responseText);
             if (doc.status === 200) {
                 model.json = "";  // reset the json
                 model.json = doc.responseText;
@@ -60,7 +60,7 @@ function logout(ck) {
     doc.open("GET", url);
     doc.onreadystatechange = function() {
         if (doc.readyState === XMLHttpRequest.DONE && doc.status === 200) {
-            //log(doc.responseText);
+            log(doc.responseText);
         }
     }
     doc.send();

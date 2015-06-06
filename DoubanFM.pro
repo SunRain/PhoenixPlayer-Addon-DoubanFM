@@ -15,7 +15,8 @@ OTHER_FILES += \
     translations/lng-zh_CN.qm \
     like.png \
     unlike.png \
-    Settings.qml
+    Settings.qml \
+    User.qml
 
 
 addon.path = $${UBUNTU_CLICK_PLUGIN_PATH}/addon/doubanfm
