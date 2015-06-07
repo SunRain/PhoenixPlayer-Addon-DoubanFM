@@ -163,7 +163,7 @@ Item {
             } else {
                 internal.isPlaying = false;
             }
-            console.log("====== OverrideController.qml onPlayBackendStateChanged " + internal.playBackendState + internal.isPlaying);
+//            console.log("====== OverrideController.qml onPlayBackendStateChanged " + internal.playBackendState + internal.isPlaying);
             //playerController由系统提供
             playerController.playBackendStateChanged();
         }
@@ -223,11 +223,10 @@ Item {
         musicPlayer.togglePlayPause();
     }
     function skipForward() {
-//        internal.rapidLoad = true;
-//        request("s")
         nextSong();
     }
     function skipBackward() {
+        showNotification({"text":qsTr("Not supported")});
     }
 
     function forwardTrackName() {
@@ -237,11 +236,13 @@ Item {
         return internal.forwardTrackInfo;
     }
     function backwardTrackName() {
+        return qsTr("UnKnow")
     }
     function backwardTrackInfo() {
     }
 
     function getPlayQueuePopoverUri() {
+        showNotification({"text":qsTr("Not supported")});
     }
     ///////////////////////////// 覆写以上方法供系统调用
 }
