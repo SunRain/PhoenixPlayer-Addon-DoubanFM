@@ -165,21 +165,21 @@ Item {
                 selected: ListView.isCurrentItem
                 onClicked: { ListView.view.currentIndex = index; }
             }
-            /*pullToRefresh*/PullToRefresh {
-                id: ptRefresh
-                refreshing: overrideController.isLoading
-                content:  Item {
-                    height: childrenRect.height * 2
-                    width: channelList.width
-                    Label {
-                        anchors.centerIn: parent
-                        color: UbuntuColors.darkGrey
-                        horizontalAlignment: Text.AlignHCenter
-                        text: ptRefresh.releaseToRefresh ? qsTr("Release to refresh") : qsTr("Pull to refresh")
-                    }
+            pullToRefresh.enabled: true
+            pullToRefresh.refreshing: overrideController.isLoading
+            pullToRefresh.content:  Item {
+                height: refreshLabel.height * 2
+                width: channelList.width
+                Label {
+                    id: refreshLabel
+                    anchors.centerIn: parent
+                    color: UbuntuColors.darkGrey
+                    horizontalAlignment: Text.AlignHCenter
+                    text: channelList.pullToRefresh.releaseToRefresh ? qsTr("Release to refresh") : qsTr("Pull to refresh")
                 }
-                onRefresh: { overrideController.newSongs(); }
             }
+            pullToRefresh.onRefresh: { overrideController.newSongs(); }
+
             section.property: "type"
             section.criteria: ViewSection.FullString
             section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
