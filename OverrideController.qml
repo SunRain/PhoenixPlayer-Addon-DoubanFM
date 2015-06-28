@@ -20,6 +20,7 @@ Item {
         property url picSource
         property string trackName
         property string artist
+        property string album
         property string forwardTrackName
         property string forwardTrackInfo
     }
@@ -118,6 +119,7 @@ Item {
         internal.picSource = songModel.model.get(0).picture.replace(/mpic/, "lpic");
         internal.trackName = songModel.model.get(0).title;
         internal.artist = songModel.model.get(0).artist;
+        internal.album = songModel.model.get(0).album;
 
         if (songModel.count > 1) {
             internal.forwardTrackName = songModel.model.get(1).title;
@@ -195,6 +197,12 @@ Item {
     function isPlaying() {
         return internal.isPlaying
     }
+    function isLocalMusic() {
+        return false;
+    }
+    function getTrackUUID() {
+        return util.calculateHash(internal.trackName);
+    }
     function getPlayBackendState() {
         return internal.playBackendState;
     }
@@ -211,6 +219,9 @@ Item {
     }
     function trackArtist() {
         return internal.artist;
+    }
+    function trackAlbum() {
+        return internal.album
     }
     function playTickPercent() {
         return internal.playTickPercent;
